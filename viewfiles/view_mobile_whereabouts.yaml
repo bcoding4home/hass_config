@@ -1,0 +1,68 @@
+# lovelace_gen
+
+title: Whereabouts
+path: presence
+icon: mdi:map-search-outline
+background: rgba(180, 180, 180, 0.3) url("/local/images/backgrounds/map.png") bottom right / 60% no-repeat fixed
+
+cards:
+  - type: vertical-stack
+    cards:
+
+      {% set people = ['daniel', 'claire', 'april', 'ryan'] %}
+
+      - type: glance
+        entities:
+          {% for person in people %}
+
+          - entity: person.{{ person }}
+            tap_action:
+              action: call-service
+              service: input_select.select_option
+              service_data:
+                entity_id: input_select.map_shows
+                option: person.{{ person }}
+
+          {% endfor %}
+
+      - !include card_map.yaml
+
+      - type: conditional
+        conditions:
+          - entity: input_select.map_shows
+            state: person.ryan
+        card: !include 
+            - card_person_new.yaml
+            - person: person.ryan
+              tracker: device_tracker.google_maps_107837278918296041603
+              pronoun: his
+
+      - type: conditional
+        conditions:
+          - entity: input_select.map_shows
+            state: person.april
+        card: !include 
+            - card_person_new.yaml
+            - person: person.april
+              tracker: device_tracker.google_maps_107837278918296041603
+              pronoun: her
+
+      - type: conditional
+        conditions:
+          - entity: input_select.map_shows
+            state: person.daniel
+        card: !include 
+            - card_person_new.yaml
+            - person: person.daniel
+              tracker: device_tracker.google_maps_107837278918296041603
+              pronoun: his
+
+      - type: conditional
+        conditions:
+          - entity: input_select.map_shows
+            state: person.claire
+        card: !include 
+            - card_person_new.yaml
+            - person: person.claire
+              tracker: device_tracker.google_maps_107837278918296041603
+              pronoun: her

@@ -1,0 +1,11 @@
+#####################################################
+##  Use a divider as a card to break up stacks
+#####################################################
+
+type: custom:hui-element
+row_type: divider
+style: 
+  height: 1px 
+  background-color: var(--switch-unchecked-track-color)
+  width: 96%
+  margin: auto

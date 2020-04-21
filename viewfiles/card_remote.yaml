@@ -1,0 +1,120 @@
+# lovelace_gen
+
+  type: vertical-stack
+  gridrow: {{ row }}
+  gridcol: {{ col }}
+  cards:
+
+  ############################################
+  ##  Activities
+  ############################################
+  {% macro activity(entity, top, left) -%}
+        - type: state-icon
+          entity: {{ entity }}
+          tap_action:
+            action: toggle
+          style:
+            top: {{ top }}%
+            left: {{ left }}%
+            <<: &style_anchor
+              transform: matrix(1.8, 0, 0, 1.8, -20, -20)
+              background: rgb(105, 199, 252, .9)
+              box-shadow: 2px 2px 5px rgb(100, 100, 100, 1
+              border-radius: 50%
+  {%- endmacro %}
+
+    - type: picture-elements
+      image: /local/images/short-empty.png
+      elements: 
+        {{ activity('switch.lounge_tv', 50, 12.5) }}
+        {{ activity('switch.usbc', 50, 37.5) }}
+        {{ activity('switch.ps3', 50, 62.5) }}
+        {{ activity('switch.soundbar', 50, 87.5) }}
+
+  ############################################
+  ##  Conditional Activity Buttons
+  ############################################
+  {% macro button(device, command, icon, top, left) -%}
+          - type: state-icon
+            entity: remote.lounge
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.lounge
+                device: {{ device }}
+                command: {{ command }}
+                delay_secs: 0.1
+            icon: mdi:{{ icon }}
+            style:
+              <<: *style_anchor
+              top: {{ top }}%
+              left: {{ left }}%
+  {%- endmacro %}
+
+  {% macro nsbutton(device, command, icon, top, left) -%}
+          - type: state-icon
+            entity: remote.lounge
+            tap_action:
+              action: call-service
+              service: remote.send_command
+              service_data:
+                entity_id: remote.lounge
+                device: {{ device|int }}
+                command: {{ command }}
+                delay_secs: 0.1
+            icon: mdi:{{ icon }}
+            style:
+              transform: matrix(2.5, 0, 0, 2.5, -20, -20)
+              top: {{ top }}%
+              left: {{ left }}%
+  {%- endmacro %}
+
+  ############################################
+  ##  Volume controls for all activities
+  ############################################
+    - type: conditional
+      conditions:
+        - entity: remote.lounge
+          state: "on"
+      card:
+        type: picture-elements
+        image: /local/images/short-empty.png
+        elements:
+          {{ button(29590185, 'VolumeDown', 'volume-minus', 50, 12.5) }}
+          {{ button(29590185, 'VolumeUp', 'volume-plus', 50, 37.5) }}
+          {{ button(29590185, 'Mute', 'volume-off', 50, 62.5) }}
+          {{ button(29590185, 'PowerToggle', 'speaker', 50, 87.5) }}
+
+  ############################################
+  ##  Shield Remote
+  ############################################
+    - type: conditional
+      conditions:
+        - entity: switch.lounge_tv
+          state: "on"
+      card:
+        type: picture-elements
+        image: /local/images/empty.png
+        elements:
+          - type: image
+            image: /local/images/remotecircle.png
+            style:
+              top: 50%
+              left: 50%
+              width: 60%
+              opacity: 0.9
+              filter: drop-shadow(2px 2px 5px rgb(100, 100, 100, 1)
+              border-radius: 50%
+
+          {{ button(64042126, 'Home', 'home-outline', 15, 12.5) }}
+          {{ button(64042126, 'Back', 'undo-variant', 15, 87.5) }}
+          {{ button(64042126, 'Select', 'keyboard-return', 50, 50) }}
+              transform: matrix(2.2, 0, 0, 2.2, -20, -20)
+          {{ nsbutton(64042126, 'DirectionUp', 'chevron-up', 22, 50) }}
+          {{ nsbutton(64042126, 'DirectionDown', 'chevron-down', 78, 50) }}
+          {{ nsbutton(64042126, 'DirectionLeft', 'chevron-left', 50, 27.5) }}
+          {{ nsbutton(64042126, 'DirectionRight', 'chevron-right', 50, 72.5) }}
+          {{ button(64042126, 'Pause', 'pause', 85, 12.5) }}
+          {{ button(64042126, 'Play', 'play', 85, 87.5) }}
+          

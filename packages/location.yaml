@@ -1,0 +1,98 @@
+##########################################
+## Google Maos Tracker
+##########################################
+device_tracker:
+  - platform: google_maps
+    username: !secret google_username
+    interval_seconds: 300
+    max_gps_accuracy: 200
+    consider_home: 250
+    track_new_devices: yes
+
+##########################################
+## Who's on the map
+##########################################
+input_select:
+  map_shows:
+    options:
+      - person.daniel
+      - person.claire
+      - person.april
+      - person.ryan
+    initial: person.ryan
+
+##########################################
+## Cameras for indoor presence detection
+##########################################
+camera:
+  - platform: foscam
+    name: Kitchen
+    ip: 192.168.1.28
+    username: !secret foscam_user
+    password: !secret foscam_pass
+  - platform: foscam
+    name: Landing
+    ip: 192.168.1.32
+    username: !secret foscam_user
+    password: !secret foscam_pass
+  - platform: foscam
+    name: Lounge
+    ip: 192.168.1.33
+    username: !secret foscam_user
+    password: !secret foscam_pass
+  - platform: foscam
+    name: Stairs
+    ip: 192.168.1.2
+    username: !secret foscam_user
+    password: !secret foscam_pass
+
+##########################################
+## WAZE
+##########################################
+sensor:
+  - platform: waze_travel_time
+    name: Claire to Home
+    origin: person.claire
+    destination: zone.home
+    region: "EU"
+    units: imperial
+    realtime: true
+    avoid_toll_roads: true
+    avoid_subscription_roads: true
+
+  - platform: waze_travel_time
+    name: Daniel to Home
+    origin: person.daniel
+    destination: zone.home
+    region: "EU"
+    units: imperial
+    realtime: true
+    avoid_toll_roads: true
+    avoid_subscription_roads: true
+
+##########################################
+## facebox
+##########################################
+image_processing:
+  - platform: facebox
+    ip_address: 127.0.0.1
+    port: 8080
+    scan_interval: 10000
+    source:
+      - entity_id: camera.lounge
+        name: loungeFaces
+
+
+  - platform: deepstack_object
+    ip_address: 127.0.0.1
+    port: 5000
+    api_key: !secret deepstack
+    # scan_interval: 30 # Optional, in seconds
+    save_file_folder: /config/www/cameras/deepstack
+    save_timestamped_file: True
+    target:
+      - person
+    source:
+      - entity_id: camera.kitchen
+        name: kitchen_persons
+

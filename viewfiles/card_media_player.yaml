@@ -1,0 +1,24 @@
+# lovelace_gen
+
+type: conditional
+conditions:
+  - entity: media_player.{{ player }}
+    state_not: "off"
+  - entity: media_player.{{ player }}
+    state_not: "unavailable"
+card:
+  type: custom:mini-media-player
+  entity: media_player.{{ player }}
+  artwork: cover
+  info: scroll
+  hide:
+    icon: true
+
+{% if width == 'narrow' %}
+  style: |
+    ha-card {
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 20px;
+    }
+{% endif %}

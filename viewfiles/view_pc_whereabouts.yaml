@@ -1,0 +1,57 @@
+# lovelace_gen
+
+title: Whereabouts
+path: presence
+icon: mdi:map-search-outline
+panel: true
+
+cards:
+  
+  - type: custom:layout-card
+    layout: grid
+    align_content: center
+    gridrows: 1fr 1fr auto
+    gridcols: 2em 25% auto 25% 2em
+
+    cards:
+      - !include 
+        - card_map.yaml
+        - row: 1 / 3
+          col: 3 / 4
+
+      - !include 
+        - card_person_new.yaml
+        - person: person.daniel
+          tracker: device_tracker.google_maps_100052762951237766231
+          pronoun: his
+          row: 1 / 2
+          col: 2 / 3
+
+      - !include 
+        - card_person_new.yaml
+        - person: person.claire
+          tracker: device_tracker.google_maps_105978805128046889243
+          pronoun: her
+          row: 2 / 3
+          col: 2 / 3
+      
+      - !include 
+        - card_person_new.yaml
+        - person: person.april
+          tracker: device_tracker.google_maps_102322051749378610106
+          pronoun: her
+          row: 1 / 2
+          col: 4 / 5
+
+      - !include 
+        - card_person_new.yaml
+        - person: person.ryan
+          tracker: device_tracker.google_maps_107837278918296041603
+          pronoun: his
+          row: 2 / 3
+          col: 4 / 5
+
+      - !include
+        - card_homer_map.yaml
+        - row: 2 / 3
+          col: 3 / 4

@@ -1,0 +1,4 @@
+input_text:
+  broadcast_text:
+    name: Message to send
+

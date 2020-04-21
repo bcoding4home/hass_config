@@ -1,0 +1,57 @@
+# lovelace_gen
+
+type: custom:stack-in-card
+title: Call a kiddie
+mode: horizontal
+keep:
+  box_shadow: true
+  border_radius: true
+  margin: true
+  outer:padding: true
+  background: true
+cards:
+  - type: button
+    entity: switch.trigger_call_april
+    show_icon: false
+    show_name: false
+    tap_action:
+      action: call-service
+      service: nodered.trigger
+      service_data:
+        entity_id: switch.trigger_call_april
+    state_color: false
+    style: |
+      ha-card {
+        background: no-repeat url("/local/images/april-room.png") center / auto 90%;
+        transform: rotateY(180deg);
+        height: 100px !important;
+        width: 140px !important;
+        margin: auto;
+        margin-bottom: 10px;
+        box-shadow: -2px 2px 5px 0px rgb(100, 100, 100, 1);
+      }
+
+  - type: button
+    entity: switch.trigger_call_ryan
+    show_icon: false
+    show_name: false
+    tap_action:
+      action: call-service
+      service: nodered.trigger
+      service_data:
+        entity_id: switch.trigger_call_ryan
+    state_color: false
+    style: |
+      ha-card {
+        background: no-repeat url("/local/images/ryan-room.png") center / auto 80%;
+        height: 100px !important;
+        width: 140px !important;
+        margin: auto;
+        margin-bottom: 10px;
+      }
+
+    
+gridrow: {{ row }}
+gridcol: {{ col }}
+
+style: 'ha-card { height: 100%; }'

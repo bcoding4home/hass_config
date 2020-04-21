@@ -1,0 +1,36 @@
+# lovelace_gen
+
+#######################################################################
+## Macro to display a media_player
+#######################################################################
+
+    {% macro mediaplayer(player) -%}
+
+      - !include
+        - card_media_player.yaml
+        - player: {{ player }}
+
+    {%- endmacro %}
+
+########################################################################
+
+title: Remote
+path: remote
+icon: mdi:remote-tv
+background: rgba(180, 180, 180, 0.8) url("/local/images/backgrounds/sofa.png") bottom left / 150% no-repeat fixed
+
+cards:
+  - type: vertical-stack
+    cards: 
+      - !include card_remote.yaml
+      - !include card_remote_shield.yaml
+
+      {{ mediaplayer('lounge_hub')}}
+      {{ mediaplayer('april_mini')}}
+      {{ mediaplayer('bedroom_speaker')}}
+      {{ mediaplayer('bedroom_tv')}}
+      {{ mediaplayer('kitchen_hub')}}
+      {{ mediaplayer('ryan_s_room_speaker')}}
+      {{ mediaplayer('study_hub')}}
+      {{ mediaplayer('box_room_mini')}}
+

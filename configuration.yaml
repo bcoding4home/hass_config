@@ -1,0 +1,25 @@
+######################################################
+# General Configuration
+######################################################
+homeassistant:
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+
+default_config:
+
+http:
+  base_url: http://192.168.1.111:8123
+
+######################################################
+# Simple Platforms
+######################################################
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+#######################################################
+# Include Files
+#######################################################
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

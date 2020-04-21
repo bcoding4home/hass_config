@@ -1,0 +1,24 @@
+- id: "1570349373770"
+  alias: Set Theme
+  trigger:
+    - event: start
+      platform: homeassistant
+  condition: []
+  action:
+    - data:
+        name: Smart - Light - Modified
+      service: frontend.set_theme
+
+
+- alias: Mutually exlusive switches 
+  trigger:
+    - platform: state
+      entity_id: input_boolean.kitchen_controls, input_boolean.lounge_controls, input_boolean.study_controls, input_boolean.bedroom_controls, input_boolean.other_controls
+      from: 'off'
+      to: 'on'
+  action:
+    service: input_boolean.turn_off
+    data_template:
+      entity_id: >
+        {% set booleans = [ 'input_boolean.kitchen_controls', 'input_boolean.lounge_controls', 'input_boolean.study_controls', 'input_boolean.bedroom_controls', 'input_boolean.other_controls' ] | reject('equalto', trigger.entity_id) %}
+        {{ booleans | list | join(', ') }}

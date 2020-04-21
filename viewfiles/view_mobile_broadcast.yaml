@@ -1,0 +1,7 @@
+title: Broadcast
+path: message
+icon: mdi:bullhorn
+
+cards:
+  - !include card_kids_broadcast.yaml
+  - !include card_custom_broadcast.yaml

@@ -1,0 +1,14 @@
+# lovelace_gen
+
+type: custom:config-template-card
+entities:
+  - input_select.map_shows
+card:
+  type: map
+  entities:
+    - ${ states['input_select.map_shows'].state }
+  default_zoom: 18
+  hours_to_show: 3
+
+gridrow: { { row } }
+gridcol: { { col } }

@@ -1,0 +1,17 @@
+# lovelace_gen
+
+title: Controls
+path: control
+icon: mdi:toggle-switch-off-outline
+panel: true
+
+cards:
+  - type: custom:layout-card
+    layout: default
+    cards:
+
+      - !include card_kitchen_controls.yaml
+      - !include card_lounge_controls.yaml
+      - !include card_bedroom_controls.yaml
+      - !include card_boxroom_controls.yaml      
+      - !include card_study_controls.yaml

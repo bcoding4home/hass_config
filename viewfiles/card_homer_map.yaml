@@ -1,0 +1,18 @@
+# lovelace_gen
+
+type: custom:layout-card
+layout: grid
+align_content: center
+justify_content: left
+gridrows: 75% 25%
+gridcols: 25% 75%
+cards:
+
+  - type: picture
+    image: /local/images/backgrounds/map.png
+    theme: no-shadow
+    gridrow: 2 / 3
+    gridcol: 1 / 2
+
+gridrow: {{ row }}
+gridcol: {{ col }}

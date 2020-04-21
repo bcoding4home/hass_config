@@ -1,0 +1,41 @@
+type: custom:stack-in-card
+title: Study
+cards:
+  - type: entities
+    show_header_toggle: false
+    entities:
+      - name: Up-light
+        type: custom:slider-entity-row
+        entity: light.up_light
+        toggle: true
+        icon: mdi:floor-lamp
+      - name: Desk lamp
+        entity: switch.desk_lamp
+        icon: mdi:desk-lamp
+    style:
+      "#states div":
+        slider-entity-row:
+          $:
+            hui-generic-entity-row: |
+              .wrapper {
+                display: contents !important;
+              }  
+
+  - !include
+      - card_media_player.yaml
+      - player: study_hub
+        width: narrow
+
+  - !include divider.yaml
+
+  - type: glance
+    entities:
+      - entity: binary_sensor.studymotion
+        show_last_changed: true
+    show_name: false
+
+  - !include divider.yaml
+
+  - !include
+    - card_environment.yaml
+    - room: study

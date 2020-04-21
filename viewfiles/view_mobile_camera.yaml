@@ -1,0 +1,20 @@
+title: Camera
+path: camera
+icon: mdi:cctv
+
+cards:
+  - type: vertical-stack
+
+    cards:
+      - !include 
+        - card_camera.yaml
+        - entity: camera.kitchen
+      - !include 
+        - card_camera.yaml
+        - entity: camera.stairs
+      - !include 
+        - card_camera.yaml
+        - entity: camera.lounge
+      - !include 
+        - card_camera.yaml
+        - entity: camera.landing

@@ -1,0 +1,66 @@
+type: custom:stack-in-card
+title: Lounge
+
+cards:  
+  - type: entities
+    show_header_toggle: false
+    entities:
+      - name: Ceiling
+        type: custom:slider-entity-row
+        entity: light.ceiling
+        toggle: true
+        icon: mdi:ceiling-light
+      - name: Fairy Lights
+        entity: switch.fairy_lights
+        icon: mdi:string-lights
+        style: |
+          @keyframes fairy {
+            0%   { --paper-item-icon-color: red; }
+            25%  { --paper-item-icon-color: blue; }
+            50%  { --paper-item-icon-color: orange; }
+            75% { --paper-item-icon-color: green; }
+            100%   { --paper-item-icon-color: red; }
+          }
+          :host {
+              {% if states(config.entity) == 'on' %}
+                animation: fairy 5s linear infinite;
+              {% endif %}
+          }
+      - name: TV
+        entity: remote.lounge
+        icon: mdi:television
+
+    style:
+      "#states div":
+        slider-entity-row:
+          $:
+            hui-generic-entity-row: |
+              .wrapper {
+                display: contents !important;
+              }  
+  
+  - !include
+    - card_media_player.yaml
+    - player: lounge_hub
+      width: narrow
+
+  - !include
+    - card_media_player.yaml
+    - player: lounge_chromecast
+      width: narrow
+
+  - !include divider.yaml
+
+  - type: glance
+    entities:
+      - entity: binary_sensor.loungedoorlock
+        show_last_changed: true
+      - entity: binary_sensor.loungemotion
+        show_last_changed: true
+    show_name: false
+
+  - !include divider.yaml
+
+  - !include
+    - card_environment.yaml
+    - room: lounge

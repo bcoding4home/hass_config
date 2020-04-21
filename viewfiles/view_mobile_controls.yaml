@@ -1,0 +1,63 @@
+# lovelace_gen
+
+title: Controls
+path: control
+icon: mdi:toggle-switch-off-outline
+
+#############################################################
+## Show one room at a time on mobile view
+#############################################################
+
+cards:
+  - type: vertical-stack
+    cards:
+
+      - type: glance
+        show_name: false
+        show_state: false
+        entities:
+          - entity: input_boolean.kitchen_controls
+            tap_action:
+              action: toggle
+          - entity: input_boolean.lounge_controls
+            tap_action:
+              action: toggle
+          - entity: input_boolean.study_controls
+            tap_action:
+              action: toggle
+          - entity: input_boolean.bedroom_controls
+            tap_action:
+              action: toggle
+          - entity: input_boolean.other_controls
+            tap_action:
+              action: toggle
+
+      - type: conditional
+        conditions:
+          - entity: input_boolean.kitchen_controls
+            state: 'on' 
+        card: !include card_kitchen_controls.yaml
+
+      - type: conditional
+        conditions:
+          - entity: input_boolean.lounge_controls
+            state: 'on' 
+        card: !include card_lounge_controls.yaml
+
+      - type: conditional
+        conditions:
+          - entity: input_boolean.study_controls
+            state: 'on' 
+        card: !include card_study_controls.yaml
+
+      - type: conditional
+        conditions:
+          - entity: input_boolean.bedroom_controls
+            state: 'on' 
+        card: !include card_bedroom_controls.yaml
+
+      - type: conditional
+        conditions:
+          - entity: input_boolean.other_controls
+            state: 'on' 
+        card: !include card_boxroom_controls.yaml      

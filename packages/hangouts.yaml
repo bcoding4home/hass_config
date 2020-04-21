@@ -1,0 +1,24 @@
+#########################################################
+## Google Hangouts
+#########################################################
+
+notify:
+  - name: daniel
+    platform: hangouts
+    default_conversations:
+      - id: !secret hangouts_daniel
+
+  - name: everyone
+    platform: hangouts
+    default_conversations:
+      - id: !secret hangouts_everyone
+
+  - name: april
+    platform: hangouts
+    default_conversations:
+      - id: !secret hangouts_april
+
+  - name: ryan
+    platform: hangouts
+    default_conversations:
+      - id: !secret hangouts_ryan

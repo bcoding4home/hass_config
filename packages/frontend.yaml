@@ -1,0 +1,23 @@
+#####################################################
+# User Interface
+######################################################
+frontend:
+  themes: !include_dir_merge_named ../themes/
+
+lovelace_gen:
+
+lovelace:
+  mode: storage
+  dashboards:
+    db-mobile:
+      mode: yaml
+      title: Mobile
+      icon: mdi:cellphone-android
+      show_in_sidebar: true
+      filename: db_mobile.yaml
+    db-pc:
+      mode: yaml
+      title: PC
+      icon: mdi:laptop-chromebook
+      show_in_sidebar: true
+      filename: db_pc.yaml

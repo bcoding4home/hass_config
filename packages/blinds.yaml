@@ -1,0 +1,51 @@
+####################################################
+## Boxroom Blind
+####################################################
+
+cover:
+  - platform: template
+    covers:
+      boxroom_blind:
+        friendly_name: "Boxroom Blind"
+        open_cover:
+          service: esphome.boxroom_window_control_blind
+          data:
+            target: 50
+        close_cover:
+          service: esphome.boxroom_window_control_blind
+          data:
+            target: 100
+        set_cover_position:
+          service: esphome.boxroom_window_control_blind
+          data_template:
+            target: "{{ position }}"
+
+        position_template: "{{ states('sensor.boxroom_blind_position') }}"
+
+      ####################################################
+      ## Kitchen Blind - fudge required to
+      ## display as open whenever part open
+      ####################################################
+      template_kitchen_blind:
+        friendly_name: "Kitchen Blind"
+        open_cover:
+          service: cover.open_cover
+          data:
+            entity_id: cover.kitchen_blind
+        close_cover:
+          service: cover.close_cover
+          data:
+            entity_id: cover.kitchen_blind
+        stop_cover:
+          service: cover.stop_cover
+          data:
+            entity_id: cover.kitchen_blind
+        set_cover_position:
+          service: cover.set_cover_position
+          data_template:
+            entity_id: cover.kitchen_blind
+            position: "{{ position }}"
+
+        position_template: "{{ state_attr('cover.kitchen_blind', 'current_position') }}"
+
+

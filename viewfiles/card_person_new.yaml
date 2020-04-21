@@ -1,0 +1,69 @@
+# lovelace_gen
+
+type: custom:stack-in-card
+title: Where's {{ person.split('.')[1]|capitalize }}?
+gridrow: {{ row }}
+gridcol: {{ col }}
+style: 'ha-card { width: 100%; }'
+
+cards:
+  - type: custom:layout-card
+    layout: grid
+    align_content: center
+    gridrows: auto 100px
+    gridcols: 25% 75%
+    card_options:
+      style: 'ha-card { box-shadow: none; background-color: transparent; }'
+
+    cards:
+      - type: picture
+        image: /local/images/{{ person.split('.')[1] }}.png
+        tap_action:
+          action: call-service
+          service: input_select.select_option
+          service_data:
+            entity_id: input_select.map_shows
+            option: {{ person }}
+        gridrow: 1 / 2
+        gridcol: 1 / 2
+        
+      - type: markdown
+        gridrow: 1 / 2
+        gridcol: 2 / 3
+        content: >
+          {% raw %}
+          Last seen {{ relative_time(state_attr('{% endraw %}{{ tracker }}{% raw%}', 'last_seen')) }} ago, 
+          {% if states( '{% endraw %}{{ person }}{% raw%}' ) == 'not_home' %} 
+          {{ distance( '{% endraw %}{{ person }}{% raw%}' ) | round(2) }} miles away at {{ state_attr('{% endraw %}{{ tracker }}{% raw%}', 'address') }}.
+          {% else %} 
+          at {{ states( '{% endraw %}{{ person }}{% raw%}' ) }}. 
+          {% endif %}
+          
+          
+          {% endraw %}{{ pronoun|capitalize }}{% raw%} phone was {{ state_attr('{% endraw %}{{ tracker }}{% raw%}', 'battery_level') }}% charged.
+
+          
+          {% if distance( '{% endraw %}{{ person }}{% raw%}' ) > 1 %}
+          {% if states('sensor.{% endraw %}{{ person.split('.')[1] }}{% raw%}_to_home') != 'unknown' %}
+          In current traffic, it would take about {{ states('sensor.{% endraw %}{{ person.split('.')[1] }}{% raw%}_to_home') }} {{ state_attr('sensor.{% endraw %}{{ person.split('.')[1] }}{% raw%}_to_home', 'unit_of_measurement') }} to drive home.
+          {% endif %}
+          {% endif %}
+
+          {% endraw %}      
+          
+
+        
+      - type: custom:config-template-card
+        entities:
+          - {{ person }}
+        card:
+          type: history-graph
+          entities: 
+            - {{ person }}
+          {% raw %}
+          hours_to_show: '${ new Date().getHours() - 5 > 0 ? new Date().getHours() - 5 : 1 }'
+          {% endraw %}
+          style: 'ha-card { box-shadow: none; background-color: transparent; }'
+        gridrow: 2 / 3
+        gridcol: 1 / 3
+

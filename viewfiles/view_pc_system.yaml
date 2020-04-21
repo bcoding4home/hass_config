@@ -1,0 +1,13 @@
+# lovelace_gen
+
+title: System
+path: System
+icon: mdi:server-network
+panel: true
+
+cards:
+  
+  - type: custom:layout-card
+    layout: vertical
+    cards:
+      - !include card_laser_printer.yaml

@@ -1,0 +1,22 @@
+type: custom:stack-in-card
+title: Boxroom
+cards:
+  - type: entities
+    show_header_toggle: false
+    entities:
+      - name: Blind
+        type: custom:slider-entity-row
+        entity: cover.boxroom_blind
+    style:
+      "#states div":
+        slider-entity-row:
+          $:
+            hui-generic-entity-row: |
+              .wrapper {
+                display: contents !important;
+              }  
+
+  - !include
+      - card_media_player.yaml
+      - player: box_room_mini
+        width: narrow

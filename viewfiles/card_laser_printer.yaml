@@ -1,0 +1,35 @@
+type: custom:stack-in-card
+cards:
+  - type: entities
+    title: Brother Printer
+    entities: 
+      - sensor.hl_l8250cdn_status
+      - sensor.hl_l8250cdn_b_w_counter
+      - sensor.hl_l8250cdn_color_counter
+  - type: picture-elements
+    image: /local/images/short-empty.png
+    elements:
+      - type: state-badge
+        entity: sensor.hl_l8250cdn_cyan_toner_remaining
+        title: Cyan
+        style:
+          top: 50%
+          left: 20%
+      - type: state-badge
+        entity: sensor.hl_l8250cdn_magenta_toner_remaining
+        title: Magenta
+        style:
+          top: 50%
+          left: 40%
+      - type: state-badge
+        entity: sensor.hl_l8250cdn_yellow_toner_remaining
+        title: Yellow
+        style:
+          top: 50%
+          left: 60%
+      - type: state-badge
+        entity: sensor.hl_l8250cdn_black_toner_remaining
+        title: Black
+        style:
+          top: 50%
+          left: 80%

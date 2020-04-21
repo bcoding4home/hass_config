@@ -1,0 +1,45 @@
+#############################################
+## Is the Bin out?
+#############################################
+input_boolean:
+  bin_out:
+    initial: off
+
+
+#############################################
+## Air Quality Monitoring
+#############################################
+sensor:
+  - platform: waqi
+    token: !secret waqi_key
+    locations:
+      - leeds
+
+
+#############################################
+## Weather
+#############################################
+weather:
+  - platform: darksky
+    api_key: !secret ds_api_key
+    mode: daily
+
+
+#############################################
+## Next Sunrise / Sunset
+#############################################
+sensor:
+  - platform: template
+    sensors:
+      nextsunrise:
+        entity_id: sun.sun
+        friendly_name: "Next Sunrise"
+        value_template: >
+          {{ as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom(' %I:%M %p') | replace(" 0", "") }}
+        icon_template: mdi:weather-sunset-up
+      nextsunset:
+        entity_id: sun.sun
+        friendly_name: "Next Sunset"
+        value_template: >
+          {{ as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom(' %I:%M %p') | replace(" 0", "") }}
+        icon_template: mdi:weather-sunset-down

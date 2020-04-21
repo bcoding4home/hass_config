@@ -1,0 +1,18 @@
+binary_sensor.kitchendoorlock:
+  device_class: lock
+binary_sensor.loungedoorlock:
+  device_class: lock
+binary_sensor.kitchendoor:
+  device_class: door
+person.daniel:
+  entity_picture: /local/images/daniel-portrait.png
+person.claire:
+  entity_picture: /local/images/claire-portrait.png
+person.april:
+  entity_picture: /local/images/april-portrait.png
+person.ryan:
+  entity_picture: /local/images/ryan-portrait.png
+light.printer:
+  icon: mdi:power
+sensor.1_day_bedroom_temperature:
+  icon: mdi:thermometer

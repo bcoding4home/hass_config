@@ -1,0 +1,25 @@
+sensor:
+  - platform: version
+    name: Current version
+    source: local
+
+  - platform: version
+    name: Latest docker image
+    source: docker
+
+  - platform: version
+    name: Latest beta image
+    source: docker
+    beta: true
+
+binary_sensor:
+  - platform: uptimerobot
+    api_key: !secret utrapikey
+
+input_number:
+  battery_level:
+    name: Battery Level
+    initial: 80
+    min: 0
+    max: 100
+    step: 5

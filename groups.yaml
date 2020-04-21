@@ -1,0 +1,13 @@
+harmony_lounge:
+  name: Lounge Entertainment
+  entities:
+    - switch.lounge_tv
+    - switch.soundbar
+    - switch.ps3
+
+family:
+  entities:
+    - person.daniel
+    - person.claire
+    - person.april
+    - person.ryan

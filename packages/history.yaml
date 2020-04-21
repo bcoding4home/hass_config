@@ -1,0 +1,132 @@
+recorder:
+  purge_keep_days: 14
+  include:
+    entities:
+      - person.daniel
+      - person.claire
+      - person.april
+      - person.ryan
+      - binary_sensor.kitchendoorlock
+      - binary_sensor.loungedoorlock
+      - binary_sensor.ha
+      - light.bedside
+      - light.worktop
+      - light.table
+      - light.up_light
+      - light.ceiling
+      - light.main
+      - light.printerenclosure
+      - sensor.kitchenlightlevel
+      - cover.template_kitchen_blind
+      - cover.boxroom_blind
+      - sensor.bedroom_temperature
+      - sensor.lounge_temperature
+      - sensor.kitchen_temperature
+      - sensor.freezer_temperature
+      - sensor.study_temperature
+      - sensor.bedroom_humidity
+      - sensor.lounge_humidity
+      - sensor.kitchen_humidity
+      - sensor.freezer_humidity
+      - sensor.study_humidity
+      - sensor.bedroom_pressure
+      - sensor.lounge_pressure
+      - sensor.kitchen_pressure
+      - sensor.freezer_pressure
+      - sensor.study_pressure
+      - sensor.printerpsu_humidity
+      - sensor.printerpsu_temperature
+      - sensor.printerpsu_temperature
+      - sensor.printerambient_temperature
+      - sensor.printerambient_humidity
+      - sensor.printerambient_pressure
+      - sensor.outside_temperature
+      - switch.lounge_tv
+      - switch.ps4
+      - switch.soundbar
+      - switch.usbc
+      - switch.kitchenzigbeerouter
+      - switch.fairy_lights
+      - switch.desk_lamp
+      - sensor.prusa_actual_bed_temp
+      - sensor.prusa_target_bed_temp
+      - sensor.prusa_actual_tool0_temp
+      - sensor.prusa_target_tool0_temp
+      - binary_sensor.prusa_printing
+      - binary_sensor.prusa_printing_error
+      - sensor.waqi_leeds_centre_united_kingdom
+      - sensor.daytime
+      - sensor.1_week_bedroom_temperature
+      - sensor.1_week_kitchen_temperature
+      - sensor.1_week_lounge_temperature
+      - sensor.1_week_outside_temperature
+      - sensor.1_week_study_temperature
+      - sensor.1_day_bedroom_temperature
+      - sensor.1_day_kitchen_temperature
+      - sensor.1_day_lounge_temperature
+      - sensor.1_day_outside_temperature
+      - sensor.1_day_study_temperature
+      - sensor.1_week_bedroom_humidity
+      - sensor.1_week_kitchen_humidity
+      - sensor.1_week_lounge_humidity
+      - sensor.1_week_outside_humidity
+      - sensor.1_week_study_humidity
+      - sensor.1_day_bedroom_humidity
+      - sensor.1_day_kitchen_humidity
+      - sensor.1_day_lounge_humidity
+      - sensor.1_day_outside_humidity
+      - sensor.1_day_study_humidity
+
+  exclude:
+    event_types:
+      - service_removed
+      - service_executed
+      - platform_discovered
+      - homeassistant_start
+      - homeassistant_stop
+      - feedreader
+      - service_registered
+      - call_service
+      - component_loaded
+      - automation_triggered
+      - script_started
+      - timer_out_of_sync
+
+
+
+influxdb:
+  host: 192.168.1.112
+  database: hass
+  max_retries: 3
+  default_measurement: state
+
+  include:
+    entities:
+      - sensor.bedroom_temperature
+      - sensor.lounge_temperature
+      - sensor.kitchen_temperature
+      - sensor.freezer_temperature
+      - sensor.study_temperature
+      - sensor.bedroom_humidity
+      - sensor.lounge_humidity
+      - sensor.kitchen_humidity
+      - sensor.freezer_humidity
+      - sensor.study_humidity
+      - sensor.bedroom_pressure
+      - sensor.lounge_pressure
+      - sensor.kitchen_pressure
+      - sensor.freezer_pressure
+      - sensor.study_pressure
+      - sensor.printerambient_temperature
+      - sensor.printerambient_humidity
+      - sensor.printerambient_pressure
+      - sensor.outside_temperature
+      - sensor.waqi_leeds_centre_united_kingdom
+      - person.daniel
+      - person.claire
+      - person.april
+      - person.ryan
+      - weather.dark_sky
+
+  tags:
+    source: hass

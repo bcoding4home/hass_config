@@ -1,0 +1,56 @@
+# lovelace_gen
+
+type: custom:stack-in-card
+
+cards:
+  - type: custom:lovelace-multiline-text-input-card
+    autosave: true
+    entity: input_text.broadcast_text
+    max_length: 200
+    min_length: 10
+    placeholder_text: 'Enter Message'
+    title: Send a custom message
+    style: |
+      ha-card {
+        background: no-repeat url("/local/images/bart-write.png") 95% center / auto 35% !important;
+      }
+
+  - type: entities
+    show_header_toggle: false
+    entities:
+      - entity: switch.call_downstairs
+        name: Kitchen and lounge
+      - entity: switch.call_upstairs
+        name: Study and boxroom
+      - entity: switch.call_april
+        name: April's room
+      - entity: switch.call_ryan
+        name: Ryan's room
+      - entity: switch.call_bedroom
+        name: Mum and Dad's room
+
+  - type: entity-button
+    entity: switch.trigger_call_message
+    show_icon: false
+    show_name: false
+    tap_action:
+      action: call-service
+      service: nodered.trigger
+      service_data:
+        entity_id: switch.trigger_call_message
+    state_color: false
+    style: |
+      ha-card {
+        background: no-repeat url("/local/images/backgrounds/megaphone.png") center / auto 80% !important;
+        height: 100px !important;
+        width: 140px !important;
+        box-shadow: 2px 2px 5px 0px rgb(100, 100, 100, 1) !important;
+        border-radius: 15px !important;
+        margin: auto;
+        margin-bottom: 15px;
+      }
+
+gridrow: {{ row }}
+gridcol: {{ col }}
+
+style: 'ha-card { height: 100%; }'

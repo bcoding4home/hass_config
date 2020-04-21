@@ -1,0 +1,107 @@
+sensor:
+
+  - platform: template
+    sensors:
+      outside_temperature:
+        friendly_name: Outside temperature
+        unit_of_measurement: °C
+        value_template: "{{ state_attr('weather.dark_sky', 'temperature') }}"
+
+  - platform: statistics
+    entity_id: sensor.kitchen_temperature
+    name: 1 day kitchen temperature
+    sampling_size: 100000
+    max_age: 
+      hours: 24
+
+  - platform: statistics
+    entity_id: sensor.kitchen_temperature
+    name: 1 week kitchen temperature
+    sampling_size: 100000
+    max_age: 
+      days: 7
+
+  - platform: statistics
+    entity_id: sensor.lounge_temperature
+    name: 1 day lounge temperature
+    sampling_size: 100000
+    max_age: 
+      hours: 24
+
+  - platform: statistics
+    entity_id: sensor.lounge_temperature
+    name: 1 week lounge temperature
+    sampling_size: 100000
+    max_age: 
+      days: 7
+
+  - platform: statistics
+    entity_id: sensor.bedroom_temperature
+    name: 1 day bedroom temperature
+    sampling_size: 100000
+    max_age: 
+      hours: 24
+
+  - platform: statistics
+    entity_id: sensor.bedroom_temperature
+    name: 1 week bedroom temperature
+    sampling_size: 100000
+    max_age: 
+      days: 7
+
+  - platform: statistics
+    entity_id: sensor.study_temperature
+    name: 1 day study temperature
+    sampling_size: 100000
+    max_age: 
+      hours: 24
+
+  - platform: statistics
+    entity_id: sensor.study_temperature
+    name: 1 week study temperature
+    sampling_size: 100000
+    max_age: 
+      days: 7
+
+  - platform: statistics
+    entity_id: sensor.outside_temperature
+    name: 1 day outside temperature
+    sampling_size: 100000
+    max_age: 
+      hours: 24
+
+  - platform: statistics
+    entity_id: sensor.outside_temperature
+    name: 1 week outside temperature
+    sampling_size: 100000
+    max_age: 
+      days: 7
+
+##########################################################
+## used to set max/min on temperature graphs
+##########################################################
+  - platform: template
+    sensors:
+      max_temp:
+        value_template: >-
+          {% set sensors = [ 
+            state_attr('sensor.1_week_lounge_temperature', 'max_value')|float,
+            state_attr('sensor.1_week_kitchen_temperature', 'max_value')|float,
+            state_attr('sensor.1_week_bedroom_temperature', 'max_value')|float,
+            state_attr('sensor.1_week_study_temperature', 'max_value')|float,
+            ]
+          %}
+  
+          {{ sensors|max }}
+
+      min_temp:
+        value_template: >-
+          {% set sensors = [ 
+            state_attr('sensor.1_week_lounge_temperature', 'min_value')|float,
+            state_attr('sensor.1_week_kitchen_temperature', 'min_value')|float,
+            state_attr('sensor.1_week_bedroom_temperature', 'min_value')|float,
+            state_attr('sensor.1_week_study_temperature', 'min_value')|float,
+            ]
+          %}
+  
+          {{ sensors|min }}
