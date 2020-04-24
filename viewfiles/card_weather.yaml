@@ -1,0 +1,33 @@
+type: custom:stack-in-card
+title: Weather
+cards:
+
+  - type: weather-forecast
+    name: ' '
+    entity: weather.openweathermap
+
+  - type: markdown
+    style: |
+      ha-card {
+        --iron-icon-width: 50px;
+        --iron-icon-height: 50px;
+      }
+    content: |
+      {% if state_attr('sensor.weather_warnings','items') != None %}
+        {% for item in state_attr('sensor.weather_warnings','items') %}
+          {% for type, icon in [('RAIN', 'weather-pouring'), ('THUNDERSTORMS', 'weather-lightning-rainy'),
+                                ('WIND', 'weather-windy'), ('SNOW', 'weather-snowy-heavy'), 
+                                ('LIGHTNING', 'weather-lightning'), ('ICE', 'snowflake-alert'),
+                                ('FOG', 'weather-fog')] if type == item['metadata:warningType']|trim("[]'") %}
+      ---
+
+      | | | |
+      | --- | --- | --- |
+      | <font color = {%- if 'Yellow' in item.description|trim("'[]'") %}'gold'
+                      {%- elif 'Amber' in item.description|trim("'[]'") %}'darkorange'
+                      {%- else %}'firebrick'
+                      {%- endif %}><ha-icon icon={{ "'mdi:" + icon + "'" }}></ha-icon></font> | | {{ item.description|trim("'[]'") }}  |
+ 
+          {% endfor %}
+        {% endfor %}
+      {% endif %}

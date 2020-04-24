@@ -20,9 +20,9 @@ sensor:
 ## Weather
 #############################################
 weather:
-  - platform: darksky
-    api_key: !secret ds_api_key
-    mode: daily
+  - platform: openweathermap
+    api_key: !secret openweathermapkey
+    mode: freedaily
 
 
 #############################################

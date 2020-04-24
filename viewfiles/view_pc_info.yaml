@@ -1,0 +1,14 @@
+# lovelace_gen
+
+title: Information
+path: info
+icon: mdi:information-variant
+panel: true
+
+cards:
+  - type: custom:layout-card
+    layout: auto
+    cards:
+
+    - !include card_weather.yaml
+    - !include card_binday.yaml

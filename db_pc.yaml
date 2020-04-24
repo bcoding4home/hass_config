@@ -21,8 +21,6 @@ custom_header:
     Home Assistant
     {% endif %}
 
-preload_cards:
-  - markdown
 
 views: # split these out to make the files more manageable
   - !include viewfiles/view_pc_media.yaml
@@ -30,3 +28,4 @@ views: # split these out to make the files more manageable
   - !include viewfiles/view_pc_whereabouts.yaml
   - !include viewfiles/view_pc_controls.yaml
   - !include viewfiles/view_pc_system.yaml
+  - !include viewfiles/view_pc_info.yaml

@@ -20,12 +20,12 @@ custom_header:
     Home Assistant
     {% endif %}
 
-preload_cards:
-  - markdown
 
 views: # split these out to make the files more manageable
   - !include viewfiles/view_mobile_remote.yaml
   - !include viewfiles/view_mobile_broadcast.yaml
   - !include viewfiles/view_mobile_whereabouts.yaml
   - !include viewfiles/view_mobile_controls.yaml
+  - !include viewfiles/view_mobile_info.yaml
   - !include viewfiles/view_mobile_camera.yaml
+ 

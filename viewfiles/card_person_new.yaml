@@ -64,6 +64,7 @@ cards:
           hours_to_show: '${ new Date().getHours() - 5 > 0 ? new Date().getHours() - 5 : 1 }'
           {% endraw %}
           style: 'ha-card { box-shadow: none; background-color: transparent; }'
+
         gridrow: 2 / 3
         gridcol: 1 / 3
 

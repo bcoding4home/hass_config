@@ -1,0 +1,6 @@
+title: Information
+path: info
+icon: mdi:information-variant
+
+cards:
+  - !include card_binday.yaml

@@ -76,6 +76,8 @@ recorder:
       - sensor.1_day_lounge_humidity
       - sensor.1_day_outside_humidity
       - sensor.1_day_study_humidity
+      - weather.openweathermap
+
 
   exclude:
     event_types:
@@ -126,7 +128,7 @@ influxdb:
       - person.claire
       - person.april
       - person.ryan
-      - weather.dark_sky
+      - weather.openweathermap
 
   tags:
     source: hass

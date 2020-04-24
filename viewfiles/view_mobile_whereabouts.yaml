@@ -44,7 +44,7 @@ cards:
         card: !include 
             - card_person_new.yaml
             - person: person.april
-              tracker: device_tracker.google_maps_107837278918296041603
+              tracker: device_tracker.google_maps_102322051749378610106
               pronoun: her
 
       - type: conditional
@@ -54,7 +54,7 @@ cards:
         card: !include 
             - card_person_new.yaml
             - person: person.daniel
-              tracker: device_tracker.google_maps_107837278918296041603
+              tracker: device_tracker.google_maps_100052762951237766231
               pronoun: his
 
       - type: conditional
@@ -64,5 +64,5 @@ cards:
         card: !include 
             - card_person_new.yaml
             - person: person.claire
-              tracker: device_tracker.google_maps_107837278918296041603
+              tracker: device_tracker.google_maps_105978805128046889243
               pronoun: her

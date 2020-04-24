@@ -8,7 +8,7 @@ entities:
 card:
 
     type: custom:mini-graph-card
-    hours_to_show: 72
+    hours_to_show: 96
     {% raw %}
     upper_bound: "${this.hass.states['sensor.max_temp'].state}"
     lower_bound: "${this.hass.states['sensor.min_temp'].state}"
@@ -24,7 +24,7 @@ card:
       - value: 26
         color: "#8B0000"
     height: 150
-    font_size: 70
+    font_size: 60
     show:
       name: false
       icon: false

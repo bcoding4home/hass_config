@@ -104,7 +104,7 @@
               left: 50%
               width: 60%
               opacity: 0.9
-              filter: drop-shadow(2px 2px 5px rgb(100, 100, 100, 1)
+              filter: drop-shadow(2px 2px 3px rgb(100, 100, 100, 1))
               border-radius: 50%
 
           {{ button(64042126, 'Home', 'home-outline', 15, 12.5) }}

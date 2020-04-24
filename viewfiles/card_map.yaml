@@ -10,5 +10,5 @@ card:
   default_zoom: 18
   hours_to_show: 3
 
-gridrow: { { row } }
-gridcol: { { col } }
+gridrow: {{ row }}
+gridcol: {{ col }}
