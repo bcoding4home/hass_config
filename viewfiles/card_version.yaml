@@ -1,0 +1,22 @@
+
+type: custom:stack-in-card
+title: Available Updates
+cards:
+  - type: entities
+    entities:
+      - entity: sensor.current_version
+        tap_action:
+          action: url
+          url_path: https://www.home-assistant.io/latest-release-notes/
+      - entity: sensor.latest_beta_image
+        tap_action:
+          action: url
+          url_path: https://rc.home-assistant.io/latest-release-notes/
+      - entity: sensor.latest_docker_image
+        tap_action:
+          action: url
+          url_path: https://hub.docker.com/r/homeassistant/home-assistant/tags
+      - entity: sensor.hacs
+        tap_action:
+          action: url
+          url_path: https://ha.eggyman.net/hacs/installed
