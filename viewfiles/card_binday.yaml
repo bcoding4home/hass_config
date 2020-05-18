@@ -23,39 +23,36 @@ cards:
         show_state: false
         show_name: false
         state_filter:
-          "Green": drop-shadow(2px 2px 1px rgb(100, 100, 100, 1))
-          "Black": grayscale(100%) brightness(80%) contrast(1) drop-shadow(2px 2px 1px rgb(100, 100, 100, 1))
+          "Green": drop-shadow(1px 1px 3px rgb(12, 12, 14))
+          "Black": grayscale(100%) brightness(80%) contrast(1) drop-shadow(1px 1px 3px rgb(12, 12, 14))
         gridrow: 1 / 2
         gridcol: 1 / 2
 
       - type: markdown
-        content: >-
+        content: >-2
           The {{ state_attr('sensor.bin_collections', 'first_bin') }} bin will be collected
-          {% set first = strptime(state_attr('sensor.bin_collections', 'first_date'), '%d/%m/%y') %}
-          {% if first.strftime('%d') == now().strftime('%d') %}
-          this morning.
-          {% elif (first.timestamp() - 24*60*60) < now().timestamp() %}
-          tomorrow morning.
-          {% elif (first.timestamp() - 6*24*60*60) < now().timestamp() %}
-          this {{ first.strftime('%A') }} morning.
-          {% else %}
-          next {{ first.strftime('%A') }}.
+          {% set first = strptime(state_attr('sensor.bin_collections', 'first_date'), '%d/%m/%y') -%}
+          {%- if first.strftime('%d') == now().strftime('%d') -%}
+            this morning.
+          {%- elif (first.timestamp() - 24*60*60) < now().timestamp() -%}
+            tomorrow morning.
+          {%- elif first.strftime('%W') == now().strftime('%W') -%}
+            this {{ first.strftime('%A') }} morning.
+          {%- else -%}
+            next {{ first.strftime('%A') }}.
           {% endif %}
 
 
-          {% set second = strptime(state_attr('sensor.bin_collections', 'second_date'), '%d/%m/%y') %}
-          {% set digit = second.strftime('%d')|int % 10 %}
-          {% if digit == 1 %}
-            {% set suffix = 'st' %}
-          {% elif digit == 2 %}
-            {% set suffix = 'nd' %}
-          {% elif digit == 3 %}
-            {% set suffix = 'rd' %}
-          {% else %}
-            {% set suffix = 'th' %}
-          {% endif %}
-          The {{ state_attr('sensor.bin_collections', 'second_bin') }} bin will be collected on {{ second.strftime('%A') }}
-          {{ second.strftime('%d') }}<sup>{{ suffix }}</sup> {{ second.strftime('%B') }}.
+
+          {% set second = strptime(state_attr('sensor.bin_collections', 'second_date'), '%d/%m/%y') -%}
+          The {{ state_attr('sensor.bin_collections', 'second_bin') }} bin will be collected on {{ second.strftime('%A') }} {{ second.strftime('%d') }}<sup>
+            {%- for digit, suffix in [('1', 'st'), ('2', 'nd'), ('3', 'rd')] if digit == second.strftime('%d')|int % 10 -%}
+              {{ suffix }}
+            {%- else -%}
+              th
+            {%- endfor -%}
+          </sup> 
+          {{ second.strftime('%B') }}.
 
         gridrow: 1 / 2
         gridcol: 2 / 3

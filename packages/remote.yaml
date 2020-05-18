@@ -91,7 +91,7 @@ switch:
 media_player:
   - platform: androidtv
     name: Shield
-    host: 192.168.1.18
+    host: 192.168.1.44
     # adbkey: "/config/adbkey/adbkey"
     device_class: androidtv
     apps:

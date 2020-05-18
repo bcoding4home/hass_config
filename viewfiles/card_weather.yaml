@@ -1,23 +1,25 @@
 type: custom:stack-in-card
-title: Weather
 cards:
 
-  - type: weather-forecast
-    name: ' '
-    entity: weather.openweathermap
+  - type: custom:weather-card-chart
+    title: Weather
+    weather: weather.openweathermap
+    mode: daily
+    style: |
+      ha-card { --iron-icon-width: 35px; --iron-icon-height: 35px; }
+      .attributes div { text-align: left; }
+      .main { font-size: 20pt; }
+      .main sup { font-size: 12pt; }
+      .main ha-icon { --iron-icon-width: 55px; --iron-icon-height: 55px; }
 
   - type: markdown
-    style: |
-      ha-card {
-        --iron-icon-width: 50px;
-        --iron-icon-height: 50px;
-      }
+    style: 'ha-card { --iron-icon-width: 50px; --iron-icon-height: 50px; }'
     content: |
       {% if state_attr('sensor.weather_warnings','items') != None %}
         {% for item in state_attr('sensor.weather_warnings','items') %}
           {% for type, icon in [('RAIN', 'weather-pouring'), ('THUNDERSTORMS', 'weather-lightning-rainy'),
                                 ('WIND', 'weather-windy'), ('SNOW', 'weather-snowy-heavy'), 
-                                ('LIGHTNING', 'weather-lightning'), ('ICE', 'snowflake-alert'),
+                                ('LIGHTNING', 'weather-lightning'), ('ICE', 'car-traction-control'),
                                 ('FOG', 'weather-fog')] if type == item['metadata:warningType']|trim("[]'") %}
       ---
 

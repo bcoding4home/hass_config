@@ -18,9 +18,9 @@
             left: {{ left }}%
             <<: &style_anchor
               transform: matrix(1.8, 0, 0, 1.8, -20, -20)
-              background: rgb(105, 199, 252, .9)
-              box-shadow: 2px 2px 5px rgb(100, 100, 100, 1
-              border-radius: 50%
+              background: var(--primary-background-color)
+              box-shadow: var(--ha-card-box-shadow)
+              border-radius: var(--ha-card-border-radius)
   {%- endmacro %}
 
     - type: picture-elements
@@ -44,7 +44,7 @@
                 entity_id: remote.lounge
                 device: {{ device }}
                 command: {{ command }}
-                delay_secs: 0.1
+                delay_secs: 1.5
             icon: mdi:{{ icon }}
             style:
               <<: *style_anchor
@@ -84,7 +84,7 @@
           {{ button(29590185, 'VolumeDown', 'volume-minus', 50, 12.5) }}
           {{ button(29590185, 'VolumeUp', 'volume-plus', 50, 37.5) }}
           {{ button(29590185, 'Mute', 'volume-off', 50, 62.5) }}
-          {{ button(29590185, 'PowerToggle', 'speaker', 50, 87.5) }}
+          {{ button(29590185, ['PowerToggle', 'InputBT', 'Source' ], 'speaker', 50, 87.5) }}
 
   ############################################
   ##  Shield Remote
@@ -98,19 +98,16 @@
         image: /local/images/empty.png
         elements:
           - type: image
-            image: /local/images/remotecircle.png
+            image: /local/icons/dpad.svg
+            filter: drop-shadow(1px 1px 3px rgb(12, 12, 14))
             style:
-              top: 50%
-              left: 50%
-              width: 60%
-              opacity: 0.9
-              filter: drop-shadow(2px 2px 3px rgb(100, 100, 100, 1))
-              border-radius: 50%
+              top: 51%
+              left: 51%
+              width: 75%
 
           {{ button(64042126, 'Home', 'home-outline', 15, 12.5) }}
           {{ button(64042126, 'Back', 'undo-variant', 15, 87.5) }}
           {{ button(64042126, 'Select', 'keyboard-return', 50, 50) }}
-              transform: matrix(2.2, 0, 0, 2.2, -20, -20)
           {{ nsbutton(64042126, 'DirectionUp', 'chevron-up', 22, 50) }}
           {{ nsbutton(64042126, 'DirectionDown', 'chevron-down', 78, 50) }}
           {{ nsbutton(64042126, 'DirectionLeft', 'chevron-left', 50, 27.5) }}

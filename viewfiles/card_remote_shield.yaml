@@ -12,12 +12,12 @@
         service_data:
           adb_command: am start -a android.intent.action.VIEW -d -n {{ adb_command }}
       image: /local/images/logos/{{app}}.png
-      filter: saturate(0%)
+      filter: saturate(40%) brightness(40%)
       state_filter:
-        '{{app}}': saturate(125%)
+        '{{app}}': saturate(125%) brightness(100%)
       style:
-        box-shadow: 2px 2px 5px rgb(100, 100, 100, 1 
-        border-radius: 50%
+        box-shadow: var(--ha-card-box-shadow)
+        border-radius: var(--ha-card-border-radius)
         top: {{ top }}%
         left: {{ left }}%
         width: 72px

@@ -1,25 +1,25 @@
-custom_header:
-  compact_mode: true
-  elements_color: "#424242"
-  background: >-
-    {% if states('binary_sensor.kitchendoorlock') == 'on' or states('binary_sensor.loungedoorlock') == 'on' %}
-    rgb(255,53,23,1)
-    {% else %}
-    rgb(105,199,252,.9)
-    {% endif %}
-  view_css: "background-blend-mode: overlay;"
-  panel_view_css: "background-blend-mode: overlay;"
-  active_tab_color: "#fed911"
-  tab_indicator_color: "#fed911"
-  split_mode: false
-  header_text: >-
-    {% if states('binary_sensor.kitchendoorlock') == 'on' %}
-    The kitchen door's unlocked
-    {% elif states('binary_sensor.loungedoorlock') == 'on' %}
-    The front door's unlocked
-    {% else %}
-    Home Assistant
-    {% endif %}
+# custom_header:
+#   compact_mode: false
+#   elements_color: "#424242"
+#   background: >-
+#     {% if states('binary_sensor.kitchendoorlock') == 'on' or states('binary_sensor.loungedoorlock') == 'on' %}
+#     rgb(255,53,23,1)
+#     {% else %}
+#     rgb(105,199,252,.9)
+#     {% endif %}
+#   view_css: "background-blend-mode: overlay;"
+#   panel_view_css: "background-blend-mode: overlay;"
+#   active_tab_color: "#fed911"
+#   tab_indicator_color: "#fed911"
+#   split_mode: false
+#   header_text: >-
+#     {% if states('binary_sensor.kitchendoorlock') == 'on' %}
+#     The kitchen door's unlocked
+#     {% elif states('binary_sensor.loungedoorlock') == 'on' %}
+#     The front door's unlocked
+#     {% else %}
+#     Home Assistant
+#     {% endif %}
 
 
 views: # split these out to make the files more manageable
@@ -27,5 +27,5 @@ views: # split these out to make the files more manageable
   - !include viewfiles/view_pc_broadcast.yaml
   - !include viewfiles/view_pc_whereabouts.yaml
   - !include viewfiles/view_pc_controls.yaml
+  - !include viewfiles/view_pc_info.yaml  
   - !include viewfiles/view_pc_system.yaml
-  - !include viewfiles/view_pc_info.yaml

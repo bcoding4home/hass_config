@@ -6,7 +6,7 @@
   condition: []
   action:
     - data:
-        name: Smart - Light - Modified
+        name: Google Dark Theme
       service: frontend.set_theme
 
 

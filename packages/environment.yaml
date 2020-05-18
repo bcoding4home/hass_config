@@ -19,7 +19,7 @@ sensor:
     name: 1 week kitchen temperature
     sampling_size: 100000
     max_age: 
-      days: 7
+      days: 5
 
   - platform: statistics
     entity_id: sensor.lounge_temperature
@@ -33,7 +33,7 @@ sensor:
     name: 1 week lounge temperature
     sampling_size: 100000
     max_age: 
-      days: 7
+      days: 5
 
   - platform: statistics
     entity_id: sensor.bedroom_temperature
@@ -47,7 +47,7 @@ sensor:
     name: 1 week bedroom temperature
     sampling_size: 100000
     max_age: 
-      days: 7
+      days: 5
 
   - platform: statistics
     entity_id: sensor.study_temperature
@@ -61,7 +61,7 @@ sensor:
     name: 1 week study temperature
     sampling_size: 100000
     max_age: 
-      days: 7
+      days: 5
 
   - platform: statistics
     entity_id: sensor.outside_temperature
@@ -75,7 +75,7 @@ sensor:
     name: 1 week outside temperature
     sampling_size: 100000
     max_age: 
-      days: 7
+      days: 5
 
 ##########################################################
 ## used to set max/min on temperature graphs

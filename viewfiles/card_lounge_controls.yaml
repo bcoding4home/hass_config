@@ -30,14 +30,14 @@ cards:
         entity: remote.lounge
         icon: mdi:television
 
-    style:
-      "#states div":
-        slider-entity-row:
-          $:
-            hui-generic-entity-row: |
-              .wrapper {
-                display: contents !important;
-              }  
+    # style:
+    #   "#states div":
+    #     slider-entity-row:
+    #       $:
+    #         hui-generic-entity-row: |
+    #           .wrapper {
+    #             display: contents !important;
+    #           }  
   
   - !include
     - card_media_player.yaml

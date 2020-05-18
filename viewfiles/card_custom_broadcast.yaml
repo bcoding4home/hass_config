@@ -44,8 +44,8 @@ cards:
         background: no-repeat url("/local/images/backgrounds/megaphone.png") center / auto 80% !important;
         height: 100px !important;
         width: 140px !important;
-        box-shadow: 2px 2px 5px 0px rgb(100, 100, 100, 1) !important;
-        border-radius: 15px !important;
+        box-shadow: var(--ha-card-box-shadow) !important;
+        border-radius: var(--ha-card-border-radius) !important;
         margin: auto;
         margin-bottom: 15px;
       }

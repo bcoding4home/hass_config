@@ -17,7 +17,6 @@
 title: Remote
 path: remote
 icon: mdi:remote-tv
-background: rgba(180, 180, 180, 0.8) url("/local/images/backgrounds/sofa.png") bottom left / 150% no-repeat fixed
 
 cards:
   - type: vertical-stack

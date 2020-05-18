@@ -3,7 +3,6 @@
 title: Whereabouts
 path: presence
 icon: mdi:map-search-outline
-background: rgba(180, 180, 180, 0.3) url("/local/images/backgrounds/map.png") bottom right / 60% no-repeat fixed
 
 cards:
   - type: vertical-stack

@@ -27,22 +27,22 @@ input_select:
 camera:
   - platform: foscam
     name: Kitchen
-    ip: 192.168.1.28
+    ip: 192.168.1.34
     username: !secret foscam_user
     password: !secret foscam_pass
   - platform: foscam
     name: Landing
-    ip: 192.168.1.32
+    ip: 192.168.1.49
     username: !secret foscam_user
     password: !secret foscam_pass
   - platform: foscam
     name: Lounge
-    ip: 192.168.1.33
+    ip: 192.168.1.25
     username: !secret foscam_user
     password: !secret foscam_pass
   - platform: foscam
     name: Stairs
-    ip: 192.168.1.2
+    ip: 192.168.1.15
     username: !secret foscam_user
     password: !secret foscam_pass
 
@@ -90,7 +90,7 @@ image_processing:
     # scan_interval: 30 # Optional, in seconds
     save_file_folder: /config/www/cameras/deepstack
     save_timestamped_file: True
-    target:
+    targets:
       - person
     source:
       - entity_id: camera.kitchen

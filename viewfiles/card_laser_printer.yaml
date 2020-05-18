@@ -1,35 +1,95 @@
+# lovelace_gen
+
 type: custom:stack-in-card
+title: Laser Printer
 cards:
-  - type: entities
-    title: Brother Printer
-    entities: 
-      - sensor.hl_l8250cdn_status
-      - sensor.hl_l8250cdn_b_w_counter
-      - sensor.hl_l8250cdn_color_counter
-  - type: picture-elements
-    image: /local/images/short-empty.png
-    elements:
-      - type: state-badge
-        entity: sensor.hl_l8250cdn_cyan_toner_remaining
-        title: Cyan
-        style:
-          top: 50%
-          left: 20%
-      - type: state-badge
-        entity: sensor.hl_l8250cdn_magenta_toner_remaining
-        title: Magenta
-        style:
-          top: 50%
-          left: 40%
-      - type: state-badge
-        entity: sensor.hl_l8250cdn_yellow_toner_remaining
-        title: Yellow
-        style:
-          top: 50%
-          left: 60%
-      - type: state-badge
-        entity: sensor.hl_l8250cdn_black_toner_remaining
-        title: Black
-        style:
-          top: 50%
-          left: 80%
+  - type: custom:layout-card
+    layout: grid
+    align_content: center
+    gridrows: auto auto
+    gridcols: 50% 50%
+
+    cards:
+      - type: entities
+        entities: 
+          - sensor.hl_l8250cdn_status
+          - sensor.hl_l8250cdn_page_counter
+          - sensor.hl_l8250cdn_b_w_counter
+          - sensor.hl_l8250cdn_color_counter
+        gridrow: 1 / 2
+        gridcol: 1 / 2
+        style: 'ha-card { box-shadow: none; background-color: transparent; }'
+
+      - type: picture
+        image: /local/images/printer.png
+        gridrow: 1 / 2
+        gridcol: 2 / 3
+        style: |
+          ha-card { 
+            box-shadow: none; background-color: transparent; 
+          }
+
+          img {
+            filter: drop-shadow(1px 1px 3px rgb(12, 12, 14));
+          }
+
+      - type: custom:stack-in-card
+        mode: horizontal
+        gridrow: 2 / 3
+        gridcol: 1 / 2
+        style: 'ha-card { box-shadow: none; background-color: transparent; width: 90%; margin: auto;}'
+        cards:
+        {% set colors = ['cyan', 'magenta', 'yellow', 'black'] %}
+        {% for color in colors %}
+          - type: custom:bar-card
+            entity: sensor.hl_l8250cdn_{{ color }}_toner_remaining
+            color: {{ color }}
+            entity_row: true
+            direction: up
+            height: 160px
+            width: 30px
+            positions:
+              icon: off
+              name: off
+              value: outside
+        {% endfor %}
+        
+      - type: custom:stack-in-card
+        gridrow: 2 / 3
+        gridcol: 2 / 3
+        style: 'ha-card { box-shadow: none; background-color: transparent; width: 90%; margin: auto;}'
+        cards:
+          - type: custom:bar-card
+            entities: 
+              - sensor.hl_l8250cdn_belt_unit_remaining_life
+              - sensor.hl_l8250cdn_drum_remaining_life
+              - sensor.hl_l8250cdn_laser_remaining_life
+              - sensor.hl_l8250cdn_fuser_remaining_life
+            severity:
+              - color: firebrick
+                from: 0
+                to: 10
+              - color: darkorange
+                from: 11
+                to: 24
+              - color: gold
+                from: 25
+                to: 44
+              - color: green
+                from: 45
+                to: 100
+            entity_row: true
+            height: 30px
+            width: 90%
+            positions:
+              icon: off
+              indicator: off
+              name: inside
+              value: inside
+            style: |
+              bar-card-contentbar	{
+                color: black;
+                margin-left: 5px;
+                width: 50%;
+                font-weight: bold;
+              }

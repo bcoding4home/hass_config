@@ -11,3 +11,7 @@ cards:
     layout: vertical
     cards:
       - !include card_laser_printer.yaml
+      - break
+      - !include card_version.yaml
+      - break
+      - !include card_battery.yaml
